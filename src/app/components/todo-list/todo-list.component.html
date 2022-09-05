@@ -8,7 +8,7 @@
     (keyup.enter)="addTodo()"
     >
 
-<div class="todo-item" *ngFor="let todo of todos">
+<div class="todo-item" *ngFor="let todo of onFilter()">
   <div class="todo-item-left">
     <input 
         type="checkbox" 
@@ -47,7 +47,7 @@
     <label>
         <input 
             type="checkbox"
-            (click)="checkAll()"
+            (change)="checkAll()"
         > 
         Check All
     </label>
@@ -57,9 +57,9 @@
 
 <div class="extra-container">
   <div>
-    <button >All</button>
-    <button >Active</button>
-    <button >Completed</button>
+    <button  (click)="filter = 'all'">All</button>
+    <button (click)="filter = 'active'">Active</button>
+    <button (click)="filter = 'completed'">Completed</button>
   </div>
 
   <div *ngIf="atLeastOnecompleted()">

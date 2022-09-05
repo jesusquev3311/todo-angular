@@ -10,6 +10,7 @@ export class TodoListComponent implements OnInit {
   todos: Todo[] = [];
   todoTitleCache: string = '';
   todoTitle: string = '';
+  filter: string = '';
   checkAllItems: boolean = false;
 
   constructor() { }
@@ -82,5 +83,18 @@ export class TodoListComponent implements OnInit {
 
   clearCompleted(): void {
     this.todos = this.todos.filter(({completed}) => completed === false);
+  }
+
+  onFilter(): Todo[] {
+
+    if(this.filter === 'completed'){
+      return this.todos.filter(todo => todo.completed)
+    }
+
+    if(this.filter === 'active'){
+      return  this.todos.filter(todo => !todo.completed)
+    }
+
+    return this.todos;
   }
 }
